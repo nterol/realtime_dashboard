@@ -3,9 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/eventsource": "^1.1.2",
+    "@types/react-redux": "^7.1.1",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/styled-components": "^4.1.16",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "react-spring": "^8.0.27",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.0.5",
+    "styled-components": "^4.3.2",
+    "typescript": "^3.5.2",
+    "uws": "10.148.1"
   },
   "scripts": {
     "start": "react-scripts start",
