@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { StateType } from "../../components/types";
+import Card from "../../components/card/Card";
 
 import Empty from "../Empty";
 
@@ -10,7 +11,7 @@ function ShippedList() {
   return shipped.length ? (
     <div>
       {shipped.map(order => (
-        <div key={order.id}>{order.organization}</div>
+        <Card key={order.id} order={order} current="shipped" />
       ))}
     </div>
   ) : (

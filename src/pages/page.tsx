@@ -7,7 +7,6 @@ export const Page = styled.div`
 
 export const Main = styled.main`
   margin-top: 24px;
-  border: 1px solid black;
 `;
 
 export const EmptyContainer = styled.div`

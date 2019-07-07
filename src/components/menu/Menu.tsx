@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Sync from "../Sync/Sync";
+import Sync from "../sync/Sync";
 
 import { Col } from "../layout";
 import { Container, Linklist } from "./styles";

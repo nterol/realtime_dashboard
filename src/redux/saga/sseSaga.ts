@@ -24,7 +24,6 @@ export function* sseSaga() {
   const url = "http://localhost:8080";
   const eventSrc = new EventSource(url);
   const chan = yield call(subSSE, eventSrc);
-  yield put({ type: "SERVER_ON" });
   try {
     while (true) {
       const message = yield take(chan);
@@ -33,17 +32,18 @@ export function* sseSaga() {
       const flag = payload.payload.short.toUpperCase();
       const type = `${subType}_${flag}`;
       yield put({ type, payload });
+      yield put({ type: serverStatus.on });
     }
   } finally {
     eventSrc.close();
     yield delay(2000);
-    yield put({ type: "SERVER_OFF" });
+    yield put({ type: serverStatus.off });
   }
 }
 
 export function* startSaga() {
   while (true) {
-    yield take("START");
+    yield take(serverStatus.launch);
     yield call(sseSaga);
   }
 }
