@@ -6,12 +6,12 @@ export const Container = styled.div`
 
 export const Input = styled.input`
   font-size: 14px;
-  width: 100px;
+  width: 130px;
   padding: 8px;
   border-style: none;
   border-bottom: 1px solid;
   background: transparent;
-  margin-left: 16px;
+  margin-right: 16px;
   :focus {
     outline: none;
   }
