@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { StateType } from "../../components/types";
 
+import List from "../../components/lists/List";
 import Empty from "../Empty";
 
 function CreatedList() {
@@ -14,28 +15,23 @@ function CreatedList() {
     <Empty type="created" />
   ) : (
     <div>
-      <h2>Commandes toute fraiches: </h2>
-      <div>
-        {created.map(order => (
-          <div key={order.id}>
-            {order.organization}
-            <br />
-            <span>{order.payload.reference}</span>
-          </div>
-        ))}
-      </div>
-      <div>
-        <h2>Commandes transmises :</h2>
-        <div>
-          {transmitted.map(order => (
-            <div key={order.id}>
-              {order.organization}
-              <br />
-              <span>{order.payload.reference}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      {!!created.length ? (
+        <>
+          <h2>Commandes toute fraiches: </h2>
+          <List store={created} current="created" />
+        </>
+      ) : (
+        undefined
+      )}
+
+      {!!transmitted.length ? (
+        <>
+          <h2>Commandes transmises :</h2>
+          <List store={transmitted} current="transmitted" />
+        </>
+      ) : (
+        undefined
+      )}
     </div>
   );
 }

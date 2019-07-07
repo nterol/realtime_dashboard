@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
 export const Page = styled.div`
-  width: 80%;
-  padding: 24px;
+  background: #fffefc;
+  width: 100%;
+
+  padding: 24px 24px 24px 200px;
+  height: 100%;
 `;
 
 export const Main = styled.main`

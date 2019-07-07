@@ -1,15 +1,19 @@
 import React from "react";
 
-import { Page } from "../page";
+import { Page, Main } from "../page";
+import DeliveredList from "./DeliveredList";
 
 const Delivered = () => (
   <Page>
     <h1>
-      Delivered{" "}
       <span role="img" aria-label="delivered">
         📬
-      </span>
+      </span>{" "}
+      Delivered
     </h1>
+    <Main>
+      <DeliveredList />
+    </Main>
   </Page>
 );
 

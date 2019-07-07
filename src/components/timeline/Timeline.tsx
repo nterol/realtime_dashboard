@@ -4,25 +4,27 @@ import { UL, LI, Step, Icon } from "./style";
 import { Row } from "../layout";
 
 type Props = {
+  id: string;
   steps: Array<{
+    status: string;
     name: string;
     icon: string;
   }>;
   current: string;
 };
 
-const Timeline = ({ steps, current }: Props) => {
-  const currentIndex = steps.findIndex(e => e.name === current);
+const Timeline = ({ steps, current, id }: Props) => {
+  const currentIndex = steps.findIndex(e => e.status === current);
   return (
     <div>
       <UL>
-        {steps.map(({ name, icon }, i) => {
+        {steps.map(({ name, icon, status }, i) => {
           const active = i <= currentIndex;
           return (
-            <LI>
+            <LI key={`${id}_${status}`}>
               <Row>
                 <Step active={active}>{name}</Step>
-                <Icon active={active}>
+                <Icon >
                   <span role="img">{icon}</span>
                 </Icon>
               </Row>

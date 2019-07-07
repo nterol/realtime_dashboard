@@ -1,6 +1,13 @@
 import packageStatus from "../types/packageStatus";
+import { Package } from "../../components/types";
 
-const initialState = {
+type PackageStore = Array<Package | undefined>;
+
+type PackageState = {
+  [k: string]: PackageStore;
+};
+
+const initialState: PackageState = {
   created: [],
   transmitted: [],
   inPreparation: [],
@@ -10,7 +17,10 @@ const initialState = {
   warning: []
 };
 
-function packageReducer(state = initialState, { type, payload }) {
+function packageReducer(
+  state: any = initialState,
+  { type, payload }: { type: string; payload: Package }
+) {
   switch (type) {
     case packageStatus.created: {
       return { ...state, created: [...state.created, payload] };
@@ -80,7 +90,7 @@ function packageReducer(state = initialState, { type, payload }) {
       const [statusKey] = findPackage(state, payload.payload.reference);
 
       if (!statusKey) return { ...state, created: [...state.created, payload] };
-      state[statusKey] = state[statusKey].map(order =>
+      state[statusKey] = state[statusKey].map((order: Package) =>
         order.payload.reference === payload.payload.reference ? payload : order
       );
       return state;
@@ -89,7 +99,7 @@ function packageReducer(state = initialState, { type, payload }) {
       const [statusKey] = findPackage(state, payload.payload.reference);
 
       if (!statusKey) return { ...state, created: [...state.created, payload] };
-      state[statusKey] = state[statusKey].map(order =>
+      state[statusKey] = state[statusKey].map((order: Package) =>
         order.payload.reference === payload.payload.reference ? payload : order
       );
       return state;
@@ -100,17 +110,26 @@ function packageReducer(state = initialState, { type, payload }) {
   }
 }
 
-const findAndMove = (a, b, c, payload) => {
-  const index = a.findIndex(
-    ({ payload: { reference } }) => reference === payload.payload.reference
-  );
+const findAndMove = (
+  a: PackageStore,
+  b: PackageStore,
+  c: PackageStore,
+  payload: Package
+) => {
+  const index = a.findIndex(order => {
+    if (order !== undefined)
+      return order.payload.reference === payload.payload.reference;
+    return false;
+  });
   if (index !== -1) {
     const [move] = a.splice(index, 1);
     return (b = [...b, move]);
   }
-  const defaultIndex = c.findIndex(
-    ({ payload: { reference } }) => reference === payload.payload.reference
-  );
+  const defaultIndex = c.findIndex(order => {
+    if (order !== undefined)
+      return order.payload.reference === payload.payload.reference;
+    return false;
+  });
 
   if (defaultIndex !== -1) {
     const [move] = c.splice(defaultIndex, 1);
@@ -118,9 +137,13 @@ const findAndMove = (a, b, c, payload) => {
   } else return (b = [...b, payload]);
 };
 
-const findPackage = (state, ref) =>
+const findPackage = (state: PackageState, ref: string) =>
   Object.keys(state).filter(
-    k => state[k].findIndex(e => e.payload.reference === ref) > -1
+    (k: string) =>
+      state[k].findIndex((e: Package | undefined) => {
+        if (e !== undefined) return e.payload.reference === ref;
+        return false;
+      }) > -1
   );
 
 export default packageReducer;

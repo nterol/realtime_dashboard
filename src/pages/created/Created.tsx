@@ -6,10 +6,10 @@ import CreatedList from "./CreatedList";
 const Created = () => (
   <Page>
     <h1>
-      Nouvelles commandes{" "}
       <span role="img" aria-label="created">
-        ✨
-      </span>
+        📝
+      </span>{" "}
+      Nouvelles commandes
     </h1>
     <Main>
       <CreatedList />

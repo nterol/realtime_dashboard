@@ -59,7 +59,7 @@ function Sync() {
           {retries > 0 ? getText(status) : undefined}
           {retries === 0 && status === "off" ? (
             <ReconnectButton onClick={handleReconnect}>
-              Appuyer ici pour vous reconnecter
+              Se reconnecter
             </ReconnectButton>
           ) : (
             undefined

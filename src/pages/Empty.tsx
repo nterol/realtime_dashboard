@@ -8,7 +8,7 @@ const sentences: { [k: string]: string } = {
   prepared: "Il n'y a pas encore de commandes en cours de préparation",
   shipped: "Aucune commande n'est en cours de livraison",
   delivered: "Aucune commande n'a été livrée",
-  exception: "Aucun problème à signaler ! keep up the good work 👍"
+  warning: "Aucun problème à signaler ! keep up the good work 👍"
 };
 
 const wording = (t: string): string => sentences[t];

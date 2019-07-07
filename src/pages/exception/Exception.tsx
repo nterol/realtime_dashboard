@@ -1,5 +1,6 @@
 import React from "react";
-import { Page } from "../page";
+import { Page, Main } from "../page";
+import ExceptionList from "./ExceptionList";
 
 const Exception = () => (
   <Page>
@@ -9,6 +10,9 @@ const Exception = () => (
       </span>{" "}
       Exceptions :
     </h1>
+    <Main>
+      <ExceptionList />
+    </Main>
   </Page>
 );
 

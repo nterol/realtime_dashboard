@@ -6,10 +6,10 @@ const Shipped = () => {
   return (
     <Page>
       <h1>
-        Shipped{" "}
         <span role="img" aria-label="shipped">
-          ⛵️
-        </span>
+          🚚
+        </span>{" "}
+        Shipped
       </h1>
 
       <Main>

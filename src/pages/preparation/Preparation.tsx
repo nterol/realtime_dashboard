@@ -1,14 +1,20 @@
 import React from "react";
-import { Page } from "../page";
+import { Page, Main } from "../page";
+
+import PreparationList from "./PreparationList";
 
 const Preparation = () => (
   <Page>
     <h1>
-      Preparation{" "}
       <span role="img" aria-label="preparation">
-        📦
-      </span>
+        🏗
+      </span>{" "}
+      Preparation
     </h1>
+
+    <Main>
+      <PreparationList />
+    </Main>
   </Page>
 );
 

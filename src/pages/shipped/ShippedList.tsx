@@ -1,8 +1,9 @@
 import React from "react";
+
 import { useSelector } from "react-redux";
 import { StateType } from "../../components/types";
-import Card from "../../components/card/Card";
 
+import List from "../../components/lists/List";
 import Empty from "../Empty";
 
 function ShippedList() {
@@ -10,9 +11,7 @@ function ShippedList() {
 
   return shipped.length ? (
     <div>
-      {shipped.map(order => (
-        <Card key={order.id} order={order} current="shipped" />
-      ))}
+      <List store={shipped} current="shipped" />
     </div>
   ) : (
     <Empty type="shipped" />
