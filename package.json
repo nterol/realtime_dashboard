@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/eventsource": "^1.1.2",
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
     "@types/styled-components": "^4.1.16",
+    "array-flat-polyfill": "^1.0.1",
+    "event-source-polyfill": "^1.0.7",
     "moment": "^2.24.0",
     "polished": "^3.4.1",
     "react": "^16.8.6",
@@ -42,5 +45,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.10.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest-styled-components": "^6.3.3"
   }
 }

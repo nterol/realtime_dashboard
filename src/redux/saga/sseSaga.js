@@ -2,10 +2,14 @@ import { eventChannel, END } from "redux-saga";
 import { take, put, call, delay } from "redux-saga/effects";
 
 import serverStatus from "../types/serverStatus";
+// keeping the file in js because I don't know how to type this
+import { NativeEventSource, EventSourcePolyfill } from "event-source-polyfill";
 
-export function subSSE(eventSrc: EventSource) {
-  const subs = (emitter: any) => {
-    eventSrc.addEventListener("order_event", (message: any) => {
+const EventSource = NativeEventSource || EventSourcePolyfill;
+
+export function subSSE(eventSrc) {
+  const subs = emitter => {
+    eventSrc.addEventListener("order_event", message => {
       emitter(message);
     });
 

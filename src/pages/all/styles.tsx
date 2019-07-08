@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-bottom: 16px;
+  margin: 16px;
 `;
 
 export const Input = styled.input`

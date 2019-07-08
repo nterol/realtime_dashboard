@@ -21,7 +21,7 @@ const SearchInput: React.FunctionComponent<Props> = ({
     />
     <SearchButton onClick={handleSearch}>
       <span role="img" aria-label="search">
-        💡
+        🔎
       </span>
     </SearchButton>
   </Container>
