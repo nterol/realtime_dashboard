@@ -14,7 +14,9 @@ interface ExtendedPackage extends Package {
 
 function AllList() {
   const [search, setSearch] = useState<string>("");
-  const [orderFound, setFound] = useState<Array<any>>([]);
+  const [orderFound, setFound] = useState<Array<ExtendedPackage | undefined>>(
+    []
+  );
 
   const fromStore = useSelector((state: StateType) => state.packages);
 

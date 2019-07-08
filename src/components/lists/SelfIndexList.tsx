@@ -10,7 +10,7 @@ interface ExtendedPackage extends Package {
 }
 
 type Props = {
-  store: Array<ExtendedPackage>;
+  store: Array<ExtendedPackage | undefined>;
 };
 
 const statusList = [
@@ -26,17 +26,18 @@ const statusList = [
 const SelfIndexList: React.FunctionComponent<Props> = ({ store }) => (
   <ListContainer large={store.length > 1}>
     {store.map(order => {
-      const formatDate = moment(order.create_time)
-        .locale("fr")
-        .format("dddd D MMMM YYYY HH:MM ");
-      return (
-        <Card
-          key={order.id}
-          order={order}
-          current={statusList[order.statusIndex]}
-          date={formatDate}
-        />
-      );
+      if (order !== undefined) {
+        const formatDate = moment(order.create_time).format("D/M/YY à HH:MM");
+        return (
+          <Card
+            key={order.id}
+            order={order}
+            current={statusList[order.statusIndex]}
+            date={formatDate}
+          />
+        );
+      }
+      return undefined;
     })}
   </ListContainer>
 );

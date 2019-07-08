@@ -13,9 +13,7 @@ type Props = {
 const List: FunctionComponent<Props> = ({ store, current }) => (
   <ListContainer large={store.length > 1}>
     {store.map(order => {
-      const formatDate = moment(order.create_time)
-        .locale("fr")
-        .format("dddd D MMMM YYYY HH:MM ");
+      const formatDate = moment(order.create_time).format("D/M/YY à HH:MM");
       return (
         <Card
           key={order.id}

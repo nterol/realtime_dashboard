@@ -12,10 +12,10 @@ const Menu: React.FunctionComponent = () => (
       <Sync />
       <Linklist>
         <Link to="/">Tous</Link>
-        <Link to="/created">Created</Link>
+        <Link to="/created">Nouveaux</Link>
         <Link to="/preparation">Preparation</Link>
-        <Link to="/shipped">Shipped</Link>
-        <Link to="/delivered">Delivered</Link>
+        <Link to="/shipped">En livraison</Link>
+        <Link to="/delivered">Livrés</Link>
         <Link to="/exception">Exception</Link>
       </Linklist>
     </Col>

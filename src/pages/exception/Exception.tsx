@@ -8,7 +8,7 @@ const Exception = () => (
       <span role="img" aria-label="exception">
         ⚠️
       </span>{" "}
-      Exceptions :
+      Exceptions
     </h1>
     <Main>
       <ExceptionList />
