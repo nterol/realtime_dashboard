@@ -1,10 +1,17 @@
 import serverStatus from "../types/serverStatus";
 
+type ServerState = {
+  status: string | undefined;
+};
+
 const serverState = {
   status: undefined
 };
 
-function serverReducer(state = serverState, { type }) {
+function serverReducer(
+  state: ServerState = serverState,
+  { type }: { type: string }
+) {
   switch (type) {
     case serverStatus.launch:
       return { status: "reconnect" };

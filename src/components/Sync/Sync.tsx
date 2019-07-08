@@ -19,6 +19,45 @@ const getText = (status: string) => {
   else if (status === "reconnect") return "Reconnexion...";
 };
 
+type Props = {
+  showStatus: boolean;
+  status: string;
+  retries: number;
+  animation: any;
+  handleReconnect: () => void;
+  setShowStatus: (a: boolean) => void;
+};
+
+export const RawSync: React.FunctionComponent<Props> = ({
+  showStatus,
+  status,
+  animation,
+  retries,
+  handleReconnect,
+  setShowStatus
+}) => (
+  <SyncContainer
+    onMouseEnter={() => setShowStatus(true)}
+    onMouseLeave={() => setShowStatus(false)}
+    show={showStatus}
+    status={status}
+  >
+    <NetWorkPastille data-test="network-pastille" status={status} />
+    <animated.div style={animation}>
+      <StatusText>
+        {retries > 0 ? getText(status) : undefined}
+        {retries === 0 && status === "off" ? (
+          <ReconnectButton onClick={handleReconnect}>
+            Se reconnecter
+          </ReconnectButton>
+        ) : (
+          undefined
+        )}
+      </StatusText>
+    </animated.div>
+  </SyncContainer>
+);
+
 function Sync() {
   const dispatch = useDispatch();
   const [retries, setRetries] = useState(3);
@@ -35,6 +74,7 @@ function Sync() {
   };
 
   const status = useSelector((state: StateType) => state.server.status);
+
   useEffect(() => {
     if (status === undefined) {
       dispatch({ type: serverStatus.launch });
@@ -47,26 +87,14 @@ function Sync() {
   }, [dispatch, retries, status]);
 
   return (
-    <SyncContainer
-      onMouseEnter={() => setShowStatus(true)}
-      onMouseLeave={() => setShowStatus(false)}
-      show={showStatus}
+    <RawSync
       status={status}
-    >
-      <NetWorkPastille status={status} />
-      <animated.div style={textProps}>
-        <StatusText>
-          {retries > 0 ? getText(status) : undefined}
-          {retries === 0 && status === "off" ? (
-            <ReconnectButton onClick={handleReconnect}>
-              Se reconnecter
-            </ReconnectButton>
-          ) : (
-            undefined
-          )}
-        </StatusText>
-      </animated.div>
-    </SyncContainer>
+      showStatus={showStatus}
+      retries={retries}
+      animation={textProps}
+      handleReconnect={handleReconnect}
+      setShowStatus={setShowStatus}
+    />
   );
 }
 

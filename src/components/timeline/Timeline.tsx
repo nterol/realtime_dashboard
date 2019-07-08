@@ -16,23 +16,26 @@ type Props = {
 const Timeline = ({ steps, current, id }: Props) => {
   const currentIndex = steps.findIndex(e => e.status === current);
   return (
-    <div>
-      <UL>
-        {steps.map(({ name, icon, status }, i) => {
-          const active = i <= currentIndex;
-          return (
-            <LI key={`${id}_${status}`}>
-              <Row>
-                <Step active={active}>{name}</Step>
-                <Icon >
-                  <span role="img">{icon}</span>
-                </Icon>
-              </Row>
-            </LI>
-          );
-        })}
-      </UL>
-    </div>
+    <UL>
+      {steps.map(({ name, icon, status }, i) => {
+        const active = i <= currentIndex;
+        return (
+          <LI key={`${id}_${status}`}>
+            <Row>
+              <Step
+                data-test={current === "transmitted" ? "mark-step" : ""}
+                active={active}
+              >
+                {name}
+              </Step>
+              <Icon>
+                <span role="img">{icon}</span>
+              </Icon>
+            </Row>
+          </LI>
+        );
+      })}
+    </UL>
   );
 };
 
