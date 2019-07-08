@@ -1,11 +1,11 @@
 import serverStatus from "../types/serverStatus";
 
 type ServerState = {
-  status: string | undefined;
+  status: string;
 };
 
 const serverState = {
-  status: undefined
+  status: "off"
 };
 
 function serverReducer(

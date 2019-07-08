@@ -1,21 +1,15 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
 
-import { RawSync } from "../Sync";
+import "jest-styled-components";
+
+import Sync, { RawSync } from "../Sync";
 
 const mockStore = configureStore();
 
-let store;
-let container;
-
-const fakeStore = { server: { status: "on" } };
-
 describe("Sync test suite", () => {
-  beforeEach(() => {
-    store = mockStore(fakeStore);
-  });
   it("Should render without crashing", () => {
     shallow(
       <RawSync
@@ -27,5 +21,38 @@ describe("Sync test suite", () => {
         setShowStatus={() => {}}
       />
     );
+  });
+
+  it("Should have a red pastille", () => {
+    const store = mockStore({ server: { status: "off" } });
+    const wrapper = mount(
+      <Provider store={store}>
+        <Sync />
+      </Provider>
+    );
+    const pastille = wrapper.find('div[data-test="network-pastille"]');
+    expect(pastille).toHaveStyleRule("background", "#FF2951");
+  });
+
+  it("Should have a green pastille", () => {
+    const store = mockStore({ server: { status: "on" } });
+    const wrapper = mount(
+      <Provider store={store}>
+        <Sync />
+      </Provider>
+    );
+    const pastille = wrapper.find('div[data-test="network-pastille"]');
+    expect(pastille).toHaveStyleRule("background", "#23d160");
+  });
+
+  it("Should have an orange pastille", () => {
+    const store = mockStore({ server: { status: "reconnect" } });
+    const wrapper = mount(
+      <Provider store={store}>
+        <Sync />
+      </Provider>
+    );
+    const pastille = wrapper.find('div[data-test="network-pastille"]');
+    expect(pastille).toHaveStyleRule("background", "#fb9e67");
   });
 });
