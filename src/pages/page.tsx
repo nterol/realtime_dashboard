@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Page = styled.div`
   background: #fffefc;
   width: 100%;
-
-  padding: 24px 24px 24px 200px;
+  padding: 24px 24px 24px 20%;
   height: 100%;
 `;
 
